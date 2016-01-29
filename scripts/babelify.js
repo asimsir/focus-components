@@ -50,11 +50,22 @@ var files = filterFiles(walk('./src'));
 files.forEach(function(file) {
     babel.transformFile(file, babelOptions, function(err, result) {
         if (err) console.error(err);
-        var newFile = file.replace('./src', '.');
-        ensureDirectoryExistence(newFile);
-        fs.writeFile(newFile, result.code, function(err) {
+
+        //Copie pour mettre à jour les nodes modules des projets
+		var newFilePrive = file.replace('./src', '../Portail.Prive/node_modules/focus-components');
+        ensureDirectoryExistence(newFilePrive);
+        fs.writeFile(newFilePrive, result.code, function(err) {
             if (err) console.error(err);
-            console.log('Babelified ' + file);
+
+            console.log('Babelified Prive:' + file);
+        });
+
+        var newFilePublic = file.replace('./src', '../Portail.Public/node_modules/focus-components');
+        ensureDirectoryExistence(newFilePublic);
+		
+        fs.writeFile(newFilePublic, result.code, function(err) {
+            if (err) console.error(err);
+            console.log('Babelified Public:' + file);
         });
     });
 });

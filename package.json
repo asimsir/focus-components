@@ -19,7 +19,7 @@
       "command": "node scripts/babelify.js"
     },
     "copy-sass": {
-      "command": "cd src && find . -name *.scss | xargs tar cvf - | tar xfp - -C ../"
+      "command": "cd src && find . -name *.scss | xargs tar cvf - | tar xfp - -C ../../Portail.Prive/node_modules/focus-components/ && find . -name *.scss | xargs tar cvf - | tar xfp - -C ../../Portail.Public/node_modules/focus-components/"
     },
     "bundle": {
       "command": "webpack --progress",
